@@ -271,11 +271,22 @@ button {
     .box {
         width: 100%;
     }
-
     .card {
+        padding: 15px;
+    }
+    .search-box {
         padding: 10px;
     }
     .extras {
         height: 70vh;
+    }
+    .artist-info {
+        flex-direction: column;
+        align-items: self-start;
+        gap: 10px;
+    }
+    .artist-info .avatar {
+        width: 150px;
+        height: 150px;
     }
 }
