@@ -8,14 +8,14 @@ export default function HomePage() {
   })
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(isTheme))
+    // localStorage.clear()
   }, [isTheme])
   const toggleTheme = () => {
     setIsTheme(!isTheme)
   }
-  localStorage.clear()
 
   return (
-    <div className={`home ${isTheme ? "" : "light"}`}>
+    <div className={`home ${isTheme ? "light" : ""}`}>
       <nav className="navbar">
         <h1 className="intro">Spotify Artist Finder</h1>
         <button onClick={toggleTheme}>toggle</button>
