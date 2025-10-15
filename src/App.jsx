@@ -1,10 +1,10 @@
 import logo from "./assets/spotify.png"
+import HomePage from "./components/Home"
 
 function App() {
   return (
     <div className="parent">
-      <h1>Hello world</h1>
-      <img src={logo} alt="logo" />
+      <HomePage />
     </div>
   )
 }
