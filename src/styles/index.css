@@ -93,12 +93,18 @@ button {
 
 .box {
     width: 70%;
-    display: grid;
-    grid-template-rows: auto auto 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     margin: 10px auto;
     margin-top: 15px;
     box-sizing: border-box;
+}
+
+.artiste-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .card {
@@ -174,10 +180,15 @@ button {
     border-color: var(--primary-color);
 }
 
-.artist-profile {
+.artist-profile,
+.loader-profile {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.loader-profile {
+    width: 100%;
 }
 
 .artist-info {
@@ -187,12 +198,19 @@ button {
 }
 
 .artist-info .avatar {
-    border-radius: 100%;
     height: 100px;
     width: 100px;
     object-fit: cover;
+    border-radius: 5px;
+    border: none;
     object-position: center;
 }
+
+.loader-profile .avatar {
+    background-color: #2e59cc;
+    animation: pulse 1.3s infinite;
+}
+
 
 .artist-info ul {
     display: flex;
@@ -201,29 +219,67 @@ button {
     list-style-type: none;
 }
 
+.loader-profile .artist-info ul {
+    gap: 10px;
+    animation: pulse 1.3s infinite;
+}
+
 .artist-info .name {
     font-weight: 500;
     font-size: 16px;
+}
+.name a {
+    text-decoration: underline;
+    color: var(--button-color);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 1px;
+    transition: all .3s ease-in-out;
+    &:hover {
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+    }
+}
+
+.loader-profile .name {
+    width: 300px;
+    height: 20px;
+    background-color: #2e59cc;
 }
 
 .artist-info .genre {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
-.genre span {
+.genre .gen {
     font-size: 13px;
+    height: fit-content;
     background-color: var(--button-color);
     color: var(--secondary-color);
     border-radius: 5px;
     padding: 2px 15px;
+    display: flex;
     border: 2px solid transparent;
     font-weight: 500;
+    text-transform: capitalize;
+}
+
+.loader-profile .gen {
+    padding: 0;
+    height: 20px;
+    width: 70px;
 }
 
 .artist-info .pop {
     font-size: 14px;
     font-weight: 500;
+}
+
+.loader-profile .pop {
+    background-color: var(--button-color);
+    height: 20px;
+    width: 70px;
 }
 
 .btns {
@@ -248,6 +304,13 @@ button {
     }
 }
 
+.loader-profile .btns button {
+    width: 130px;
+    height: 40px;
+    padding: 0;
+    animation: pulse 1.3s infinite;
+}
+
 .btns .albums-btn {
     background-color: #1f222c;
 
@@ -256,14 +319,127 @@ button {
     }
 }
 
-.extras {
-    background-image: url(../assets/bg.png);
-    background-position: center;
-    background-size: cover;
-    height: 500px;
+.albums h3,
+.top-tracks h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 0 15px 0;
+    background-color: var(--button-color);
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.album-loader h3, .track-loader h3 {
+    padding: 25px;
+    animation: pulse 1.3s infinite;
+}
+
+.album-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.album-list .album-item {
+    display: grid;
+    grid-template-rows: 20vw auto;
+    gap: 10px;
+}
+.album-loader .album-item {
+    background-color: var(--button-color);
+    border-radius: 5px;
+    animation: pulse 1.3s infinite;
+}
+
+.album-list img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+    position: relative;
+    filter: grayscale(.6) blur(1px);
+}
+
+.album-list img:hover {
+    filter: grayscale(0) blur(0px);
+}
+
+.album-list a {
+    font-weight: 500;
+    text-decoration: underline;
+    color: var(--button-color);
+    font-size: 15px;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0px;
+    transition: all .3s ease-in-out;
+}
+
+.album-list a:hover {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+
+.tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style-position: inside;
+    list-style-type: decimal-leading-zero;
+}
+
+.tracks li {
+    display: inline-flex;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: var(--button-color);
+}
+.track-loader li {
+    padding: 30px;
+    animation: pulse 1.3s infinite;
+}
+.tracks a {
+    width: fit-content;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0px;
+    transition: all .3s ease-in-out;
+    &:hover {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    }
+}
+
+.tracks .track-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.tracks .track-title {
+    font-weight: 600;
+}
+
+.tracks .track-albm {
+    color: #d2d2d2;
+    font-style: italic;
+    font-size: 13px;
 }
 
 @media screen and (max-width: 700px) {
+    .navbar {
+        padding: 15px 10px;
+    }
+
+    .intro {
+        font-size: 12px;
+    }
+
     .home {
         padding: 10px;
     }
@@ -271,22 +447,74 @@ button {
     .box {
         width: 100%;
     }
+
     .card {
-        padding: 15px;
+        padding: 15px 10px;
     }
+
     .search-box {
         padding: 10px;
     }
+
     .extras {
         height: 70vh;
     }
+
     .artist-info {
         flex-direction: column;
         align-items: self-start;
-        gap: 10px;
+        gap: 15px;
     }
+
     .artist-info .avatar {
         width: 150px;
         height: 150px;
     }
+
+    .album-list {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 15px;
+        row-gap: 20px;
+    }
+
+    .album-list .album-item {
+        grid-template-rows: 200px auto;
+        gap: 5px;
+    }
+
+    .albums h3,
+    .top-tracks h3 {
+        font-size: 14px;
+    }
+    .btns button {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    
+    .loader-profile .btns button {
+        width: 130px;
+        height: 40px;
+    }
 }
+
+    @media screen and (max-width: 700px) {
+        .loader-profile .name {
+            width: 300px;
+            height: 25px;
+            background-color: #2e59cc;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.5;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
