@@ -186,6 +186,11 @@ button {
     flex-direction: column;
     gap: 20px;
 }
+/* .artist-profile {
+    position: sticky;
+    top: 50px;
+    z-index: 999;
+} */
 
 .loader-profile {
     width: 100%;
